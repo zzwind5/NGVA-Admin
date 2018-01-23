@@ -1,0 +1,9 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "47a0833b3ed91e82b92c39a48453b75d9bd94fc885a030a9c61dadbb94fdf1ea"
+    }
+  ],
+  "port": 3000
+}
