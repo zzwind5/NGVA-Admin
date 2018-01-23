@@ -1,4 +1,5 @@
 global.$fs = require('fs');
 global.$path = require('path');
 global._ = require('lodash');
-global.$config = require('../config');
+global.__home = $path.join(__dirname, '../');
+global.$config = JSON.parse($fs.readFileSync(`${__home}/config.json`));
