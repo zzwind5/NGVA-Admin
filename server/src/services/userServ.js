@@ -24,8 +24,8 @@ userService.login = function (username, password, session) {
   let passwordEncrypted = encrypt(password);
   let user = checkRes.getResult();
   if (user.password === passwordEncrypted) {
-    session.username = user.username;
-    return new SuccessRep({username: user.username});
+    session.user = user;
+    return new SuccessRep(user);
   } else {
     return new ErrorRep(40004, "Invalid password.");
   }
@@ -45,7 +45,7 @@ userService.logout = function(session) {
  * @param session
  */
 userService.checkLogin = function(session) {
-  if (session.username) {
+  if (session.user) {
     return new SuccessRep();
   } else {
     return new ErrorRep(4001, 'You should login first.')
@@ -78,6 +78,14 @@ userService.changePassword = function(username, oldPwd, newPwd) {
   user.password = newPwdEnc;
   $fs.writeFileSync(`${__home}/config.json`, JSON.stringify($config, null, 2));
   return new SuccessRep();
+}
+
+/**
+ * Check whether user is administrator
+ * @param user
+ */
+userService.isAdminUser = function(user) {
+  return user && user.role === 'administrator';
 }
 
 /**

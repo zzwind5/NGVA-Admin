@@ -9,9 +9,9 @@ $fs.readdir(__dirname, function (err, files) {
   	//ignore index.js and hidden files
     if (!_.startsWith(file, '.') && file !== 'index.js') {
       try {
-		router.use('/' + file.replace('.js', ''), require('./' + file).router);
+		    router.use('/' + file.replace('.js', ''), require('./' + file).router);
       } catch (ex) {
-		console.error('Load router failed [' + $path.join(__dirname, file) + ']：' + ex.stack);
+		    console.error('Load router failed [' + $path.join(__dirname, file) + ']：' + ex.stack);
       }
     }
   });
