@@ -34,6 +34,9 @@ function check_status(service){
         proc.stdout.on('data', function(data){
             let res = new Map();
             _.forEach(data.split("\n"), function(line){
+            	if (line.length === 0) {
+            		return;
+            	}
                 let items = line.split("=");
                 res.set(items[0], items[1]);
             });
@@ -46,13 +49,13 @@ function check_status(service){
 }
 
 function check_services() {
+	let data = new Map();
     _Promise.map(services, check_status).then(function(res){
-       	let data = new Map();
         _.forEach(services, function(service, i){
             data.set(service, res[i]);
         });
-        return data;
     });
+    return data;
 }
 
 
