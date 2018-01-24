@@ -9,8 +9,7 @@ let serviceController = {};
  * @param res
  */
 serviceController.getStatus = function(req, res){
-	let result = serviceServ.getStatus();
-	return res.json(result);
+	serviceServ.getStatus(res);
 }
 
 /**

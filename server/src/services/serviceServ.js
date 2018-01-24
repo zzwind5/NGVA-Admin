@@ -12,9 +12,8 @@ let serviceServ = {};
 /**
  * Get system services status
  */
-serviceServ.getStatus = function() {
-	let result = check_services();
-	return new SuccessRep(result);
+serviceServ.getStatus = function(response) {
+	check_services(response);
 }
 
 /**
@@ -48,14 +47,16 @@ function check_status(service){
     });
 }
 
-function check_services() {
+function check_services(response) {
 	let data = new Map();
     _Promise.map(services, check_status).then(function(res){
         _.forEach(services, function(service, i){
             data.set(service, res[i]);
         });
+        response.json(new SuccessRep(data));
+    }).catch(function(error) {
+        response.json(new ErrorRep(40011, 'Get service status failed'));
     });
-    return data;
 }
 
 
