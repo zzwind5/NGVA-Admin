@@ -31,13 +31,13 @@ function check_status(service){
     return new _Promise(function(resolve, reject){
         let proc = exec(`systemctl show ${service} | grep ${ACTIVE_KEY}`);
         proc.stdout.on('data', function(data){
-            let res = new Map();
+            let res = {};
             _.forEach(data.split("\n"), function(line){
             	if (line.length === 0) {
             		return;
             	}
                 let items = line.split("=");
-                res.set(items[0], items[1]);
+                res[items[0]] = items[1];
             });
             resolve(res);
         });
@@ -48,10 +48,10 @@ function check_status(service){
 }
 
 function check_services(response) {
-	let data = new Map();
+	let data = {};
     _Promise.map(services, check_status).then(function(res){
         _.forEach(services, function(service, i){
-            data.set(service, res[i]);
+            data[services] = res[i][ACTIVE_KEY];
         });
         response.json(new SuccessRep(data));
     }).catch(function(error) {
