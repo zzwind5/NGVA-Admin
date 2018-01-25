@@ -8,8 +8,9 @@ let serviceController = {};
  * @param req
  * @param res
  */
-serviceController.getStatus = function(req, res){
-	serviceServ.getStatus(res);
+serviceController.getStatus = async function(req, res){
+	let result = await serviceServ.getStatus();
+	return res.json(result);
 }
 
 /**
