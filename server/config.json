@@ -13,16 +13,16 @@
   ],
   "port": 3000,
   "services": [
-    "Elasticsearch",
-    "Ignite",
-    "Redis",
-    "Rabbitmq-Server",
-    "Nginx",
-    "Postgresql-9.3",
-    "Aerohive-Tomcat",
-    "Aerohive-Tomcat_2",
-    "Aerohive-Tomcat_3",
-    "Aerohive-Tomcat_4",
-    "Capwap-Tunnel"
+    "elasticsearch",
+    "ignite",
+    "redis",
+    "rabbitmq-server",
+    "nginx",
+    "postgresql-9.3",
+    "aerohive-tomcat",
+    "aerohive-tomcat_2",
+    "aerohive-tomcat_3",
+    "aerohive-tomcat_4",
+    "capwap-tunnel"
   ]
 }
