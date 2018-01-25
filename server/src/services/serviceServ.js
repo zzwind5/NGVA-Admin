@@ -50,8 +50,8 @@ function check_status(service){
 function check_services(response) {
 	let data = {};
     _Promise.map(services, check_status).then(function(res){
-        _.forEach(services, function(service, i){
-            data[services] = res[i][ACTIVE_KEY];
+        _.forEach(services, function(serv, i){
+            data[serv] = res[i][ACTIVE_KEY];
         });
         response.json(new SuccessRep(data));
     }).catch(function(error) {
