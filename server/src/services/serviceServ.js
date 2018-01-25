@@ -3,8 +3,6 @@ const {isAdminUser} = require('./userServ');
 const _Promise = require('bluebird');
 const {exec} = require('child_process');
 
-const services = ["elasticsearch", "ignite", "redis", "rabbitmq-server", "nginx", "postgresql-9.3", 
-	"aerohive-tomcat", "aerohive-tomcat_2", "aerohive-tomcat_3", "aerohive-tomcat_4", "capwap-tunnel"];
 const ACTIVE_KEY = 'ActiveState';
 let serviceServ = {};
 
@@ -30,7 +28,7 @@ serviceServ.restartAll = function(user){
 
 function check_status(service){
     return new _Promise(function(resolve, reject){
-        let proc = exec(`systemctl show ${service} | grep ${ACTIVE_KEY}`);
+        let proc = exec(`sudo systemctl show ${service} | grep ${ACTIVE_KEY}`);
         proc.stdout.on('data', function(data){
             let res = {};
             _.forEach(data.split("\n"), function(line){
@@ -48,7 +46,7 @@ function check_status(service){
     });
 }
 
-check_services = async function check_services() {
+const check_services = async function() {
 	let data = {};
     let result = {};
     await _Promise.map($config.services, check_status).then(function(res){
@@ -57,7 +55,8 @@ check_services = async function check_services() {
         });
         result = new SuccessRep(data);
     }).catch(function(error) {
-        result = new SuccessRep(data);
+        console.error(error);
+        result = new ErrorRep(40010, 'Get services status failed.');
     });
 
     return result;

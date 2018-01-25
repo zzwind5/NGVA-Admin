@@ -47,7 +47,8 @@ userController.checkLogin = function(req, res, next) {
  * @param res
  */
 userController.changePassword = function(req, res) {
-	return res.json(userServ.changePassword(req.session.username, req.body.oldPwd, req.body.newPwd));
+	let result = userServ.changePassword(req.session.user.username, req.body.oldPwd, req.body.newPwd)
+	return res.json(result);
 }
 
 module.exports = userController;
