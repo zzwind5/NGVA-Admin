@@ -12,6 +12,7 @@ userController.login = function (req, res) {
 	let username = _.trim(req.query.username || req.body.username || '');
   	let password = req.body.password;
 
+  	$log.info(`Login request from ${username}.`);
 	let result = userServ.login(username, password, req.session);
 	return res.json(result);
 }
@@ -22,6 +23,7 @@ userController.login = function (req, res) {
  * @param res
  */
 userController.logout = function(req, res) {
+	$log.info(`Logout request from ${req.session.user.username}`);
 	let result = userServ.logout(req.session);
 	return res.json(result);
 }
@@ -37,6 +39,7 @@ userController.checkLogin = function(req, res, next) {
 	if (result.isSuccessful()) {
 		next();
 	} else {
+		$log.info(`User not logged in, reject the request.`)
 		return res.json(result);
 	}
 }
@@ -47,6 +50,7 @@ userController.checkLogin = function(req, res, next) {
  * @param res
  */
 userController.changePassword = function(req, res) {
+	$log.info(`Change password request from ${req.session.user.username}`);
 	let result = userServ.changePassword(req.session.user.username, req.body.oldPwd, req.body.newPwd)
 	return res.json(result);
 }

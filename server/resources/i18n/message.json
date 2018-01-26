@@ -7,7 +7,6 @@
 	"40006": [ "user.change.pwd.oldInvalid", 	"The old password is incorrect." ],
 	"40007": [ "user.change.pwd.newInvalid", 	"Invalid new password." ],
 	
-
 	"40101": [ "service.getStatus.failed",		"Cannot get services status."]
 
 }

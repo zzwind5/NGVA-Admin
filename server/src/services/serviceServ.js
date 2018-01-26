@@ -55,7 +55,7 @@ const check_services = async function() {
         });
         result = new SuccessRep(data);
     }).catch(function(error) {
-        console.error(error);
+        $log.error(error);
         result = new ErrorRep("service.getStatus.failed");
     });
 
