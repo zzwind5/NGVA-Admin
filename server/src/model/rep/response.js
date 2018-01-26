@@ -1,3 +1,5 @@
+const msgMap = require('./errorMsg');
+
 let response = {};
 
 class Response {
@@ -28,9 +30,21 @@ class Response {
 	}
 }
 
+function transformMsg(msgTemp, ...args) {
+	if (!msgTemp ){
+		return msgTemp;
+	}
+	for(let index in args) {
+		msgTemp = msgTemp.replaceAll('\\{'+index+'\\}', args[index]);
+	}
+	return msgTemp;
+}
+
 class ErrorRep extends Response {
-	constructor(errorCode, message) {
-		super(errorCode, message);
+	constructor(msgKey, ...args) {
+		let msgHolder = msgMap.get(msgKey);
+		let errorMsg = transformMsg(msgHolder.getMessage(), args);
+		super(msgHolder.getErrorCode(), errorMsg);
 	}
 }
 

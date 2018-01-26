@@ -1,0 +1,13 @@
+{
+	"40001": [ "user.not.logged.in", 			"You should login first." ],
+	"40002": [ "user.permission.deny", 			"Permission deny." ],
+	"40003": [ "user.not.exist", 				"User '{0}' not exist." ],
+	"40004": [ "user.name.invalid", 			"Invalid username." ],
+	"40005": [ "user.pwd.invalid", 				"Invalid password." ],
+	"40006": [ "user.change.pwd.oldInvalid", 	"The old password is incorrect." ],
+	"40007": [ "user.change.pwd.newInvalid", 	"Invalid new password." ],
+	
+
+	"40101": [ "service.getStatus.failed",		"Cannot get services status."]
+
+}

@@ -22,7 +22,7 @@ serviceServ.restartAll = function(user){
 	if (isAdminUser(user)) {
 		return new SuccessRep();
 	} else {
-		return new ErrorRep(40006, 'Permission deny.')
+		return new ErrorRep("user.permission.deny");
 	}
 }
 
@@ -56,7 +56,7 @@ const check_services = async function() {
         result = new SuccessRep(data);
     }).catch(function(error) {
         console.error(error);
-        result = new ErrorRep(40010, 'Get services status failed.');
+        result = new ErrorRep("service.getStatus.failed");
     });
 
     return result;

@@ -27,7 +27,7 @@ userService.login = function (username, password, session) {
     session.user = user;
     return new SuccessRep(user);
   } else {
-    return new ErrorRep(40004, "Invalid password.");
+    return new ErrorRep("user.pwd.invalid");
   }
 };
 
@@ -48,7 +48,7 @@ userService.checkLogin = function(session) {
   if (session.user) {
     return new SuccessRep();
   } else {
-    return new ErrorRep(4001, 'You should login first.')
+    return new ErrorRep("user.not.logged.in");
   }
 }
 
@@ -66,12 +66,12 @@ userService.changePassword = function(username, oldPwd, newPwd) {
   }
 
   if (!newPwd) {
-    return new ErrorRep(40004, 'Invalid new password.');
+    return new ErrorRep("user.change.pwd.newInvalid");
   }
 
   let oldPwdEnc = encrypt(oldPwd);
   if (oldPwdEnc !== user.password) {
-    return new ErrorRep(40005, 'The old password is incorrect.');
+    return new ErrorRep("user.change.pwd.oldInvalid");
   }
 
   let newPwdEnc = encrypt(newPwd);
@@ -95,14 +95,16 @@ userService.isAdminUser = function(user) {
  */
 function checkUser(username, password) {
   //check username and password valid.
-  if (!username || !password) {
-    return new ErrorRep(40002, "Invalid username or password.");
+  if (!username ) {
+    return new ErrorRep("user.name.invalid");
+  } else if (!password ) {
+    return new ErrorRep("user.pwd.invalid");
   }
 
   // get user information
   let user = _.find($config.users, u => u.username === username);
   if (!user) {
-    return new ErrorRep(40003, "User not exists.");
+    return new ErrorRep("user.not.exist", username);
   }
 
   return new SuccessRep(user);
