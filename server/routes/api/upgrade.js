@@ -1,6 +1,6 @@
 const express = require('express');
 let router = express.Router();
-const serviceController = require('../../src/controllers/serviceCtl');
+const upgradeController = require('../../src/controllers/upgradeCtrl');
 const userController = require('../../src/controllers/userCtl');
 
 let indexRouter = {};
@@ -10,11 +10,7 @@ let indexRouter = {};
 router.use(userController.checkLogin);
 /** Readonly API Start **************************************************************************** */
 
-//Get all services status
-router.get('/getStatus', serviceController.getStatus);
-
 /** Readonly API End ****************************************************************************** */
-
 
 
 
@@ -22,8 +18,8 @@ router.get('/getStatus', serviceController.getStatus);
 router.use(userController.checkPermisson);
 /** Writeable API Start *************************************************************************** */
 
-//restart all services status
-router.get('/restartAll', serviceController.restartAll);
+//Get all services status
+router.post('/start', upgradeController.upgrade);
 
 /** Writeable API End ***************************************************************************** */
 

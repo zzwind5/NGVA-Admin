@@ -10,11 +10,15 @@ router.post('/login', userController.login);
 //Logout
 router.get('/logout', userController.logout);
 
-//Check whether login
+//Check login status
 router.use(userController.checkLogin);
+/** Readonly API Start **************************************************************************** */
 
 //Change password
 router.post('/changePwd', userController.changePassword);
+
+/** Readonly API End ****************************************************************************** */
+
 
 
 indexRouter.router = router;

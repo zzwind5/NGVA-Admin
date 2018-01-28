@@ -19,11 +19,7 @@ serviceServ.getStatus = async function() {
  * Restart all system services
  */
 serviceServ.restartAll = function(user){
-	if (isAdminUser(user)) {
-		return new SuccessRep();
-	} else {
-		return new ErrorRep("user.permission.deny");
-	}
+    /** TODO */
 }
 
 function check_status(service){

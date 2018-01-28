@@ -84,8 +84,12 @@ userService.changePassword = function(username, oldPwd, newPwd) {
  * Check whether user is administrator
  * @param user
  */
-userService.isAdminUser = function(user) {
-  return user && user.role === 'administrator';
+userService.checkPermission = function(user) {
+  if (user && user.role === 'administrator') {
+    return new SuccessRep();
+  } else {
+    return new ErrorRep("user.permission.deny");
+  }
 }
 
 /**

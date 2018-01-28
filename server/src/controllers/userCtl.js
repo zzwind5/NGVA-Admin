@@ -45,6 +45,22 @@ userController.checkLogin = function(req, res, next) {
 }
 
 /**
+ * Check user permission
+ * @param req
+ * @param res
+ * @param next
+ */
+userController.checkPermisson = function(req, res, next) {
+	let result = userServ.checkPermission(req.session.user);
+	if (result.isSuccessful()) {
+		next();
+	} else {
+		$log.error(result.getMessage());
+		return res.json(result);
+	}
+}
+
+/**
  * Change current user's password
  * @param req
  * @param res

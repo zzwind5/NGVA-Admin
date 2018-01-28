@@ -9,6 +9,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 
 var app = express();
+global.$app = app;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
