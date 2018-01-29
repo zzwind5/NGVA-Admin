@@ -18,6 +18,7 @@ upgradeController.upgrade = function(req, res){
 	.on('file', function(field, file) {
 		console.log(file);
 		$fs.rename(file.path, `D:/Temp/upload/${file.name}`);
+		// TODO callback;
 	})
 	.on('end', function(){
 		console.log('Upload finished.');

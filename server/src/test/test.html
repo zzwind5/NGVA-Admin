@@ -11,7 +11,25 @@
         <p class="help-block">请选择要上传的文件.</p>
       </div>
       <button type="submit">点击添加</button>
-</form>
+	</form>
+
+
+	<script type="text/javascript">
+		const ws = new WebSocket('ws://127.0.0.1:3000?t=test');
+
+		ws.onopen = function(){
+			console.log('WebSocket open.');
+			ws.open('start');
+		}
+
+		ws.onmessage = function(evt) {
+			console.log(evt);
+		}
+
+		ws.onclose = function(evt) {
+			
+		}
+	</script>
 </body>
 </html>
 

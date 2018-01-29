@@ -22,11 +22,12 @@ wss.on('connection', function(ws, req) {
 	ws.send('Hello');
 
 	ws.on('message', function incoming(message){
-		//TODO
+		console.log(`Receive message: ${message}`);
 	});
 
 	ws.on('close', function(close) {
 		waCache.delete(this.clientIpAddr);
+		console.log('WebSocket closed.');
         // try{
         // 	wss.broadcast(0,this.user.name);
         // }catch(e){
